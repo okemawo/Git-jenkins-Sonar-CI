@@ -1,0 +1,29 @@
+security:
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy: triggeringUsersAuthorizationStrategy
+
+jobs:
+  - script: >
+      pipelineJob('github-build-exec') {
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  github('okemawo/spring-petclinic')
+                }
+              }
+            }
+            scriptPath('./environmentInStage.groovy')
+          }
+        }
+      }
+
+unclassified:
+  sonarGlobalConfiguration:
+    installations:
+      - name: "SonarQube"
+        serverUrl: "http://sonar:9000"
+        credentialsId: "squ_ababb5fa4a4d7ee9ec07b8b98a9300a0e3616f51"
