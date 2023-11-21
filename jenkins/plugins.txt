@@ -5,6 +5,7 @@ blueocean:latest
 build-timeout:latest
 cloudbees-folder:latest
 configuration-as-code:latest
+cors-filter:latest
 credentials-binding:latest
 docker-plugin:latest
 email-ext:latest
@@ -21,9 +22,9 @@ pipeline-github-lib:latest
 pipeline-stage-view:latest
 sonar:latest
 ssh-slaves:latest
+strict-crumb-issuer:latest
 timestamper:latest
 workflow-cps:latest
 workflow-job:latest
 workflow-aggregator:latest
 ws-cleanup:latest
-cors-filter:latest
