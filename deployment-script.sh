@@ -59,3 +59,6 @@ echo "Jenkins URL: http://localhost:8080"
 
 # echo url to access sonarqube
 echo "SonarQube URL: http://localhost:9000"
+
+
+# end
