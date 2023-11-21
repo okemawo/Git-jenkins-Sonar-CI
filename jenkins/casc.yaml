@@ -1,8 +1,12 @@
-security:
-  queueItemAuthenticator:
-    authenticators:
-    - global:
-        strategy: triggeringUsersAuthorizationStrategy
+jenkins:
+  authorizationStrategy: unsecured
+  crumbIssuer: 
+    strict:
+      checkClientIP: false
+      checkOnlyLocalPath: false
+      checkSameSource: false
+      checkSessionMatch: false
+      hoursValid: 10
 
 jobs:
   - script: >
@@ -16,7 +20,7 @@ jobs:
                 }
               }
             }
-            scriptPath('./environmentInStage.groovy')
+            scriptPath('./environment.groovy')
           }
         }
       }
@@ -31,4 +35,3 @@ unclassified:
     installations:
       - name: "SonarQube"
         serverUrl: "http://sonar:9000"
-        credentialsId: "squ_ababb5fa4a4d7ee9ec07b8b98a9300a0e3616f51"
