@@ -26,3 +26,4 @@ workflow-cps:latest
 workflow-job:latest
 workflow-aggregator:latest
 ws-cleanup:latest
+cors-filter:latest
