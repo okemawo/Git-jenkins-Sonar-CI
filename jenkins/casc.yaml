@@ -22,6 +22,11 @@ jobs:
       }
 
 unclassified:
+  accessControlsFilter:
+    allowedHeaders: "Jenkins-Crumb"
+    allowedMethods: "GET, POST"
+    allowedOrigins: "*"
+    enabled: true
   sonarGlobalConfiguration:
     installations:
       - name: "SonarQube"
