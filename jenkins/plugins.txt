@@ -1,3 +1,4 @@
+ansible:latest
 ant:latest
 antisamy-markup-formatter:latest
 authorize-project:latest
