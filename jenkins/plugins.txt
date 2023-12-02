@@ -23,6 +23,7 @@ pipeline-github-lib:latest
 pipeline-stage-view:latest
 sonar:latest
 ssh-slaves:latest
+ssh-agent:latest
 strict-crumb-issuer:latest
 timestamper:latest
 workflow-cps:latest

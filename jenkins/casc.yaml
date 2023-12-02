@@ -35,3 +35,14 @@ unclassified:
     installations:
       - name: "SonarQube"
         serverUrl: "http://sonar:9000"
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: "my-ssh-credentials"
+              username: "ansible"
+              password: "password"
+              description: "SSH credentials for myuser"

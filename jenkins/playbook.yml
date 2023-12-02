@@ -1,0 +1,40 @@
+---
+- hosts: localhost
+  vars:
+    ansible_ssh_pass: password
+  tasks:
+    - name: Install sshpass on the control node
+      become: yes
+      apt:
+        name: sshpass
+        state: present
+
+    - name: Copy JAR file to the server
+      shell: sshpass -p "{{ ansible_ssh_pass }}" scp target/spring-petclinic-3.1.0-SNAPSHOT.jar ansible@petclinic:~/
+
+    - name: Run application
+      shell: sshpass -p "{{ ansible_ssh_pass }}" ssh ansible@petclinic "nohup java -jar ~/spring-petclinic-3.1.0-SNAPSHOT.jar --server.port=9090 &"
+
+
+    # - name: Copy JAR file into Docker container
+    #   command: docker cp target/spring-petclinic-3.1.0-SNAPSHOT.jar petclinic:~/
+
+    # - name: Run application
+    #   command: docker exec petclinic nohup java -jar ~/spring-petclinic-3.1.0-SNAPSHOT.jar --server.port=9090 &
+  # tasks:
+  #   - name: Pull Docker image
+  #     docker_image:
+  #       name: your-docker-image
+  #       source: pull
+
+  #   - name: Create Docker container
+  #     docker_container:
+  #       name: your-container-name
+  #       image: your-docker-image
+  #       state: started
+
+  #   - name: Copy JAR file into Docker container
+  #     docker_cp:
+  #       src: path/to/your/jar/file
+  #       dest: your-container-name:/path/in/container
+  #       direction: to

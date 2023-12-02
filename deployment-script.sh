@@ -35,6 +35,14 @@ echo "SonarQube API Key: $api_key"
 # create a new project in sonarqube
 curl -u $api_key: -X POST "http://localhost:9000/api/projects/create?name=$project_name&project=$project_key_name"
 
+# build the ansible deployment container
+docker build -t okemawo1/petclinic petclinic
+
+docker run --rm -d --name petclinic \
+    --network=deployment-network \
+    -p 9090:9090 \
+    okemawo1/petclinic
+
 # build the docker image from jenkins directory
 docker build -t okemawo1/jenkins-deployment jenkins
 
@@ -44,8 +52,11 @@ docker run --network=deployment-network -d --rm --name jenkins \
     -e .SONAR_PROJECT_NAME=$project_name \
     -e SONAR_URL=$sonar_url \
     -e SONAR_TOKEN=$api_key \
-    -p 9090:9090 -p 8080:8080 \
+    -p 8080:8080 \
+    -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker \
     okemawo1/jenkins-deployment
+    # -p 9090:9090 \
+# docker run  -d -p 8080:8080 jenkins/jenkins
 
 # sleep for 20 sec to enable jenkins sever to be setup
 echo "Jenkins is Starting ....."
@@ -59,6 +70,3 @@ echo "Jenkins URL: http://localhost:8080"
 
 # echo url to access sonarqube
 echo "SonarQube URL: http://localhost:9000"
-
-
-# end

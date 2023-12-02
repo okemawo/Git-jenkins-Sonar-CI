@@ -3,6 +3,7 @@ FROM jenkins/jenkins
 # install maven 
 USER root
 RUN apt-get update && apt-get install -y maven
+RUN apt-get update && apt-get install -y ansible
 
 # disable setup wizard
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
